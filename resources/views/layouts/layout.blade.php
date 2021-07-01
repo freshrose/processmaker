@@ -32,6 +32,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/sidebar.css') }}" rel="stylesheet">
     <link href="/css/bpmn-symbols/css/bpmn.css" rel="stylesheet">
+    <link href="/css/ffs.css" rel="stylesheet">
     @yield('css')
     <script type="text/javascript">
     @if(Auth::user())

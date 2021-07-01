@@ -31,6 +31,7 @@ class Kernel extends HttpKernel
             \ProcessMaker\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            \ProcessMaker\Http\Middleware\UserFromToken::class,
             \ProcessMaker\Http\Middleware\SessionStarted::class,
             \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
