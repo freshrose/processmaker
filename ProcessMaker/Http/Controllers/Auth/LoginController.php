@@ -2,11 +2,17 @@
 namespace ProcessMaker\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use Laminas\Diactoros\ResponseFactory;
+use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\StreamFactory;
+use Laminas\Diactoros\UploadedFileFactory;
+use League\OAuth2\Server\ResourceServer;
 use ProcessMaker\Models\User;
 use ProcessMaker\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use ProcessMaker\Traits\HasControllerAddons;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 
 class LoginController extends Controller
 {
@@ -72,6 +78,30 @@ class LoginController extends Controller
         }
 
         return $this->login($request);
+    }
+
+    public function loginWithToken(Request $request)
+    {
+        $token = $request->get('loginToken');
+        $request->headers->add(['Authorization' => 'Bearer ' . $token]);
+
+        $psr = (new PsrHttpFactory(
+            new ServerRequestFactory,
+            new StreamFactory,
+            new UploadedFileFactory,
+            new ResponseFactory
+        ))->createRequest($request);
+
+        /** @var ResourceServer $server */
+        $server = app(\League\OAuth2\Server\ResourceServer::class);
+
+        /** @var \Laminas\Diactoros\ServerRequest $serverRequest */
+        $serverRequest = $server->validateAuthenticatedRequest($psr);
+
+        Auth::logout();
+        Auth::loginUsingId($serverRequest->getAttribute('oauth_user_id'), true);
+
+        return redirect('/');
     }
 
     /**

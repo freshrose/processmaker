@@ -147,7 +147,9 @@ return [
     |
     */
 
-    'path' => '/;samesite=Lax',
+    //'path' => '/;samesite=Lax',
+    //'path' => '/;samesite=None',
+    'path' => env('SESSION_PATH', '/;samesite=Lax'),
 
     /*
     |--------------------------------------------------------------------------
@@ -188,4 +190,5 @@ return [
 
     'http_only' => true,
 
+    'same_site' => env('SESSION_SAME_SITE', null),
 ];

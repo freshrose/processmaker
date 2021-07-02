@@ -31,7 +31,6 @@ class Kernel extends HttpKernel
             \ProcessMaker\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            \ProcessMaker\Http\Middleware\UserFromToken::class,
             \ProcessMaker\Http\Middleware\SessionStarted::class,
             \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -40,6 +39,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \ProcessMaker\Http\Middleware\GenerateMenus::class,
             \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+            \ProcessMaker\Http\Middleware\XFrameOptions::class,
             
 
 
