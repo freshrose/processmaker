@@ -258,7 +258,7 @@ class Install extends Command
             // Install migrations
             $this->call('migrate:fresh', [
                 '--seed' => true,
-                '--force' => true,
+                '--force' => false,
             ]);
 
             $this->info(__("ProcessMaker database installed successfully."));
