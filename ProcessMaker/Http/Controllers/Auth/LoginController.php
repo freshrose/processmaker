@@ -83,6 +83,7 @@ class LoginController extends Controller
     public function loginWithToken(Request $request)
     {
         $token = $request->get('loginToken');
+        $redirectPath = $request->get('redirectPath') ?? '/';
         $request->headers->add(['Authorization' => 'Bearer ' . $token]);
 
         $psr = (new PsrHttpFactory(
@@ -101,7 +102,7 @@ class LoginController extends Controller
         Auth::logout();
         Auth::loginUsingId($serverRequest->getAttribute('oauth_user_id'), true);
 
-        return redirect('/');
+        return redirect($redirectPath);
     }
 
     /**
