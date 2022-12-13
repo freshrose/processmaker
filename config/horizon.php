@@ -127,7 +127,7 @@ return [
     |
     */
 
-    'memory_limit' => 256,
+    'memory_limit' => 512,
 
     /*
     |--------------------------------------------------------------------------
@@ -149,6 +149,7 @@ return [
                 'processes' => 5,
                 'tries' => 1,
                 'timeout' => 3600,
+                'memory' => 256,
             ],
             'supervisor-1' => [
                 'connection' => 'redis',
@@ -157,6 +158,7 @@ return [
                 'processes' => 5,
                 'tries' => 3,
                 'timeout' => 600,
+                'memory' => 256,
             ],
         ],
 
@@ -168,6 +170,7 @@ return [
                 'processes' => 2,
                 'tries' => 1,
                 'timeout' => 3600,
+                'memory' => 256,
             ],
             'supervisor-1' => [
                 'connection' => 'redis',
@@ -176,6 +179,7 @@ return [
                 'processes' => 2,
                 'tries' => 3,
                 'timeout' => 600,
+                'memory' => 256,
             ],
         ],
 
@@ -187,6 +191,7 @@ return [
                 'processes' => 2,
                 'tries' => 1,
                 'timeout' => 3600,
+                'memory' => 256,
             ],
             'supervisor-1' => [
                 'connection' => 'redis',
@@ -195,6 +200,7 @@ return [
                 'processes' => 2,
                 'tries' => 3,
                 'timeout' => 600,
+                'memory' => 256,
             ],
         ],
     ],
